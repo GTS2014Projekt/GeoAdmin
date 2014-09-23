@@ -16,6 +16,11 @@
         <activity
             android:name="de.glueckkanja.geoadmin.IndexActivity"
             android:label="@string/title_activity_index" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name="de.glueckkanja.geoadmin.FencingActivity"

@@ -9,8 +9,22 @@
     tools:context="de.glueckkanja.geoadmin.FencingActivity$PlaceholderFragment" >
 
     <TextView
+        android:id="@+id/tv_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="59dp"
+        android:text="Klick below" />
+
+    <Button
+        android:id="@+id/b_toFencing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_label"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="137dp"
+        android:onClick="oc_fencing"
+        android:text="Fencing" />
 
 </RelativeLayout>
