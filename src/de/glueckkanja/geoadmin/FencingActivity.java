@@ -41,7 +41,22 @@ public class FencingActivity extends Activity {
 				if(isFencing){
 					for(int i=0;i<pulledBeacons.size();i++){
 						String currentMAC = pulledBeacons.get(i).getMacAddress();
-						//Seach if Beacon already in List
+						//Search if Beacon already in List
+						boolean isInside = false;
+						int index=0;
+						for(int j=0;i<beaconList.size();i++){
+							if(beaconList.get(j).getMacAddress() == currentMAC){
+								isInside=true;
+								index=j;
+							}
+						}
+						if(isInside){
+							double range = Utils.computeAccuracy(pulledBeacons.get(i));
+							beaconList.get(index).compute(range);
+						}else{
+							double range = Utils.computeAccuracy(pulledBeacons.get(i));
+							beaconList.add(new beaconHolder(currentMAC, range));
+						}
 					}
 				}
 			}			
