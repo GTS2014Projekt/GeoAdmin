@@ -21,6 +21,10 @@ public class beaconHolder {
 			}
 		}
 	}
+	
+	public String doString(){
+		return macAddress+", minRange: "+String.valueOf(minRange)+", maxRange: "+String.valueOf(maxRange);				
+	}
 
 	public double getMinRange() {
 		return minRange;

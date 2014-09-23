@@ -2,18 +2,17 @@ package de.glueckkanja.geoadmin;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.estimote.sdk.Beacon;
 import com.estimote.sdk.BeaconManager;
 import com.estimote.sdk.Region;
 import com.estimote.sdk.Utils;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 public class FencingActivity extends Activity {
@@ -37,7 +36,7 @@ public class FencingActivity extends Activity {
 			@Override
 			public void onBeaconsDiscovered(Region region, List<Beacon> pulledBeacons) {
 				// TODO Auto-generated method stub
-				Log.d("Beacons", "Ranged beacons: " + pulledBeacons.toString());	    	
+				Log.d("Fencing", "Ranged beacons: " + pulledBeacons.toString());	    	
 				if(isFencing){
 					for(int i=0;i<pulledBeacons.size();i++){
 						String currentMAC = pulledBeacons.get(i).getMacAddress();
@@ -62,14 +61,30 @@ public class FencingActivity extends Activity {
 			}			
 		});
 	}
+	
+	
+	public void oc_startFencing(View v){
+		beaconList.clear();
+		isFencing=true;
+	}
+	
+	public void oc_stopFencing(View v){
+		isFencing=false;
+		for(int i=0;i<beaconList.size();i++){
+			Log.d("Fencing", beaconList.get(i).doString());
+		}
+	}
+	
+	
+	
 	private void connect(){
 		beaconManager.connect(new BeaconManager.ServiceReadyCallback() {
 			@Override public void onServiceReady() {
 				try {
 					beaconManager.startRanging(ALL_ESTIMOTE_BEACONS);
-					Log.d("Beacons", "Starting Ranging");
+					Log.d("Fencing", "Starting Ranging");
 				} catch (RemoteException e) {
-					Log.e("Beacons", "Cannot start ranging", e);
+					Log.e("Fencing", "Cannot start ranging", e);
 				}
 		    }
 		});
@@ -105,7 +120,7 @@ public class FencingActivity extends Activity {
 		try {
 			beaconManager.stopRanging(ALL_ESTIMOTE_BEACONS);
 		} catch (RemoteException e) {
-			Log.e("Beacons", "Cannot stop but it does not matter now", e);
+			Log.e("Fencing", "Cannot stop but it does not matter now", e);
 		}
 		Toast.makeText(getBaseContext(), "Service stopped", Toast.LENGTH_LONG).show();
 	}
