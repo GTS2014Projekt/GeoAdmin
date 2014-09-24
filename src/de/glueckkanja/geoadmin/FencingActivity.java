@@ -24,7 +24,7 @@ public class FencingActivity extends Activity {
 	private static final Region ALL_ESTIMOTE_BEACONS = new Region("regionId", ESTIMOTE_PROXIMITY_UUID, null, null);
 	
 	private BeaconManager beaconManager = new BeaconManager(this);
-	private ArrayList<beaconHolder> beaconList = new ArrayList<beaconHolder>();
+	private ArrayList<BeaconHolder> beaconList = new ArrayList<BeaconHolder>();
 	
 	private ListView listview;
 	
@@ -78,7 +78,7 @@ public class FencingActivity extends Activity {
 							beaconList.get(index).compute(range);
 						}else{
 							double range = Utils.computeAccuracy(pulledBeacons.get(i));
-							beaconList.add(new beaconHolder(currentMAC, range));
+							beaconList.add(new BeaconHolder(currentMAC, range));
 						}
 					}
 				}
@@ -97,7 +97,15 @@ public class FencingActivity extends Activity {
 		for(int i=0;i<beaconList.size();i++){
 			Log.d("Fencing", beaconList.get(i).doString());
 		}
-		//populateListView(content);
+		populateListView(createStringArray(beaconList));
+	}
+	
+	private String[] createStringArray(ArrayList<BeaconHolder> list){
+		String[] returnList = null;
+		for(int i=0;i<list.size();i++){
+			returnList[i] = list.get(i).doString();
+		}		
+		return returnList;
 	}
 	
 	

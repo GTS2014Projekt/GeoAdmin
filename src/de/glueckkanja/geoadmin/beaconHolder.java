@@ -2,12 +2,12 @@ package de.glueckkanja.geoadmin;
 
 import com.estimote.sdk.Beacon;
 
-public class beaconHolder {
+public class BeaconHolder {
 	private String macAddress;
 	private double minRange;
 	private double maxRange;
 	
-	public beaconHolder(String macAddress, double range){
+	public BeaconHolder(String macAddress, double range){
 		this.macAddress=macAddress;
 		compute(range);
 	}
