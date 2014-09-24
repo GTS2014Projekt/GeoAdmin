@@ -2,10 +2,12 @@ package de.glueckkanja.geoadmin;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import com.estimote.sdk.Beacon;
 import com.estimote.sdk.BeaconManager;
 import com.estimote.sdk.Region;
 import com.estimote.sdk.Utils;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.RemoteException;
@@ -13,13 +15,18 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 public class FencingActivity extends Activity {
 	private static final String ESTIMOTE_PROXIMITY_UUID = "B9407F30-F5F8-466E-AFF9-25556B57FE6D";
 	private static final Region ALL_ESTIMOTE_BEACONS = new Region("regionId", ESTIMOTE_PROXIMITY_UUID, null, null);
+	
 	private BeaconManager beaconManager = new BeaconManager(this);
 	private ArrayList<beaconHolder> beaconList = new ArrayList<beaconHolder>();
+	
+	private ListView listview;
 	
 	public boolean isFencing=false;
 	
@@ -27,10 +34,27 @@ public class FencingActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_fencing);
+		
+		listview = (ListView)findViewById(R.id.listView);
+		
 		init();
+		
 		
 	}
 	
+	
+	
+	private void populateListView(String[] myItems) {
+		//String[] myItems = {"BeaconA","BeaconB","BeaconC"};
+		
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.da_item, myItems);
+		
+		listview.setAdapter(adapter);
+		
+	}
+
+
+
 	private void init(){
 		beaconManager.setRangingListener(new BeaconManager.RangingListener() {
 			@Override
@@ -73,6 +97,7 @@ public class FencingActivity extends Activity {
 		for(int i=0;i<beaconList.size();i++){
 			Log.d("Fencing", beaconList.get(i).doString());
 		}
+		//populateListView(content);
 	}
 	
 	
@@ -122,7 +147,7 @@ public class FencingActivity extends Activity {
 		} catch (RemoteException e) {
 			Log.e("Fencing", "Cannot stop but it does not matter now", e);
 		}
-		Toast.makeText(getBaseContext(), "Service stopped", Toast.LENGTH_LONG).show();
+		Toast.makeText(getBaseContext(), "Ranging-Service stopped", Toast.LENGTH_LONG).show();
 	}
 
 }
