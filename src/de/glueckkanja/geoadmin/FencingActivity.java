@@ -62,25 +62,30 @@ public class FencingActivity extends Activity {
 				// TODO Auto-generated method stub
 				Log.d("Fencing", "Ranged beacons: " + pulledBeacons.toString());	    	
 				if(isFencing){
-					for(int i=0;i<pulledBeacons.size();i++){
-						String currentMAC = pulledBeacons.get(i).getMacAddress();
-						//Search if Beacon already in List
-						boolean isInside = false;
-						int index=0;
-						for(int j=0;i<beaconList.size();i++){
-							if(beaconList.get(j).getMacAddress() == currentMAC){
-								isInside=true;
-								index=j;
+					if(!pulledBeacons.isEmpty()){
+						for(int i=0;i<pulledBeacons.size();i++){
+							String currentMAC = pulledBeacons.get(i).getMacAddress();
+							//Search if Beacon already in List
+							boolean isInside = false;
+							int index=0;
+							for(int j=0;i<beaconList.size();i++){
+								if(beaconList.get(j).getMacAddress() == currentMAC){
+									isInside=true;
+									index=j;
+								}
 							}
-						}
-						if(isInside){
-							double range = Utils.computeAccuracy(pulledBeacons.get(i));
-							beaconList.get(index).compute(range);
-						}else{
-							double range = Utils.computeAccuracy(pulledBeacons.get(i));
-							beaconList.add(new BeaconHolder(currentMAC, range));
-						}
+							if(isInside){
+								double range = Utils.computeAccuracy(pulledBeacons.get(i));
+								beaconList.get(index).compute(range);
+							}else{
+								double range = Utils.computeAccuracy(pulledBeacons.get(i));
+								beaconList.add(new BeaconHolder(currentMAC, range));
+							}
+						}	
+					}else{
+						Toast.makeText(getBaseContext(), "No Beacons in Range, cannot start Fencing", Toast.LENGTH_LONG).show();
 					}
+					
 				}
 			}			
 		});
