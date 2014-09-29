@@ -30,6 +30,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.glueckkanja.geoadmin.IndexActivity" />
         </activity>
+        <activity
+            android:name="de.glueckkanja.geoadmin.BatteryListActivity"
+            android:label="@string/title_activity_battery_list" >
+        </activity>
     </application>
 
 </manifest>
