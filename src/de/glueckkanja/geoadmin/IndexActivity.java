@@ -41,5 +41,9 @@ public class IndexActivity extends Activity {
 		Intent intent= new Intent(this, FencingActivity.class);
 		startActivity(intent);
 	}
+	
+	public void oc_battery(View view){
+		
+	}
 
 }

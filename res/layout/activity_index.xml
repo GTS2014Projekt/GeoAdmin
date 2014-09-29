@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="59dp"
-        android:text="Klick below" />
+        android:text="Welche Anwendung wollen Sie benutzen?" />
 
     <Button
         android:id="@+id/b_toFencing"
@@ -26,5 +26,15 @@
         android:layout_marginBottom="137dp"
         android:onClick="oc_fencing"
         android:text="Fencing" />
+
+    <Button
+        android:id="@+id/b_checkBattery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/b_toFencing"
+        android:layout_alignBottom="@+id/b_toFencing"
+        android:layout_alignRight="@+id/tv_label"
+        android:onClick="oc_battery"
+        android:text="Check Battery" />
 
 </RelativeLayout>
