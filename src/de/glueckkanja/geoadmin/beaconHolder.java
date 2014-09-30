@@ -9,7 +9,7 @@ public class BeaconHolder {
 	
 	public BeaconHolder(String macAddress, double range){
 		this.macAddress=macAddress;
-		compute(range);
+		minRange = range;
 	}
 	
 	public void compute(double range){

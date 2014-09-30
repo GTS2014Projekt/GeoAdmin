@@ -31,6 +31,7 @@
             android:layout_gravity="left"
             android:layout_weight="1"
             android:minWidth="125dp"
+            android:onClick="oc_startFencing"
             android:text="Start Fencing" />
 
         <Button
@@ -39,7 +40,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:minWidth="125dp"
+            android:onClick="oc_stopFencing"
             android:text="Stop Fencing" />
+
     </LinearLayout>
 
 </LinearLayout>
