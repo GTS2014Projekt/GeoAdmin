@@ -112,7 +112,7 @@ public class FencingActivity extends Activity {
 	
 	
 	private String[] createStringArray(ArrayList<BeaconHolder> list){
-		String[] returnList  = new String[20];
+		String[] returnList  = new String[list.size()];
 		for(int i=0;i<list.size();i++){
 			returnList[i] = list.get(i).doString();
 		}		
